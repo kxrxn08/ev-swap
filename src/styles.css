@@ -2265,6 +2265,140 @@ button, a { -webkit-tap-highlight-color: transparent; }
   to { opacity: 1; }
 }
 
+/* ---------------- CUSTOMER PAGE ---------------- */
+.nav-link-router {
+  color: #536059;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.nav-link-router:hover { color: var(--green); }
+
+.customer-hero {
+  padding: 105px 0 120px;
+}
+
+/* What is voltGo */
+.what-section { background: var(--off-white); }
+
+.what-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.what-card {
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.what-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--green-light);
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.what-card h3 {
+  margin: 0;
+  color: var(--black);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 20px;
+}
+
+.what-card p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* How it works */
+.how-section { background: var(--white); }
+
+.how-steps {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.how-step {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.how-step:last-child { border-bottom: none; }
+
+.how-step-number {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--green);
+  color: white;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.how-step-content h3 {
+  margin: 0;
+  color: var(--black);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 19px;
+}
+
+.how-step-content p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Pricing features */
+.price-features {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0;
+}
+
+.price-features li {
+  padding: 6px 0;
+  font-size: 13px;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+
+.price-features li:last-child { border-bottom: none; }
+
+.price-cta {
+  width: 100%;
+  text-align: center;
+}
+
+.pricing-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.final-cta-desc {
+  margin-top: 12px;
+  color: #c8d0cb;
+}
+
+[data-theme="dark"] .final-cta-desc { color: #c8d0cb; }
+
 /* ---------------- RESPONSIVE ---------------- */
 @media (max-width: 1000px) {
   .nav-links { display: none; }
@@ -2286,7 +2420,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
   .value-grid,
   .place-grid,
-  .budget-grid { grid-template-columns: repeat(2, 1fr); }
+  .budget-grid,
+  .what-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .pricing-grid-3 { grid-template-columns: repeat(2, 1fr); }
 
   .summary-grid { grid-template-columns: 1fr; }
 }
@@ -2327,7 +2464,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
   .value-grid,
   .place-grid,
-  .budget-grid { grid-template-columns: 1fr; }
+  .budget-grid,
+  .what-grid { grid-template-columns: 1fr; }
 
   .pricing-signal-grid { grid-template-columns: 1fr; }
 
