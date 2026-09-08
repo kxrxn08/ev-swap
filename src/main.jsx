@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./styles.css";
 
@@ -6,6 +6,34 @@ const WhatsAppLink =
   "https://wa.me/919999999999?text=Hi%20voltGo%2C%20I%20want%20to%20know%20about%20battery%20swapping.";
 
 function App() {
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("voltgo-theme") || "light";
+    }
+    return "light";
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("voltgo-theme", theme);
+  }, [theme]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    document.querySelectorAll(".animate-in").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="app">
       {/* NAVBAR */}
@@ -25,6 +53,13 @@ function App() {
           <a href="#contact" className="nav-cta">
             Contact
           </a>
+          <button
+            className="theme-toggle"
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            aria-label="Toggle theme"
+          >
+            {theme === "light" ? "🌙" : "☀️"}
+          </button>
         </div>
       </header>
 
@@ -96,7 +131,7 @@ function App() {
         </section>
 
         {/* 2. CUSTOMER PROBLEM */}
-        <section className="section problem-section" id="problem">
+        <section className="section animate-in problem-section" id="problem">
           <div className="container">
             <div className="section-heading">
               <span className="eyebrow">Customer Problem</span>
@@ -152,7 +187,7 @@ function App() {
         </section>
 
         {/* 3. CUSTOMER DISCOVERY */}
-        <section className="section discovery-section" id="discovery">
+        <section className="section animate-in discovery-section" id="discovery">
           <div className="container">
             <div className="section-heading centered">
               <span className="eyebrow">What We Heard</span>
@@ -204,7 +239,7 @@ function App() {
         </section>
 
         {/* 4. TARGET MARKET */}
-        <section className="section market-section" id="market">
+        <section className="section animate-in market-section" id="market">
           <div className="container">
             <div className="section-heading">
               <span className="eyebrow">Target Market</span>
@@ -262,7 +297,7 @@ function App() {
         </section>
 
         {/* 5. CUSTOMER PERSONAS */}
-        <section className="section personas-section">
+        <section className="section animate-in personas-section">
           <div className="container">
             <div className="section-heading centered">
               <span className="eyebrow">Personas</span>
@@ -320,7 +355,7 @@ function App() {
         </section>
 
         {/* 6. VALUE PROPOSITION */}
-        <section className="section value-section">
+        <section className="section animate-in value-section">
           <div className="container">
             <div className="section-heading centered">
               <span className="eyebrow">Value Proposition</span>
@@ -360,7 +395,7 @@ function App() {
         </section>
 
         {/* 7. POSITIONING */}
-        <section className="section positioning-section">
+        <section className="section animate-in positioning-section">
           <div className="container">
             <div className="section-heading">
               <span className="eyebrow">Positioning</span>
@@ -402,7 +437,7 @@ function App() {
         </section>
 
         {/* 8. MARKETING STRATEGY */}
-        <section className="section strategy-section" id="strategy">
+        <section className="section animate-in strategy-section" id="strategy">
           <div className="container">
             <div className="section-heading centered">
               <span className="eyebrow">Marketing Strategy</span>
@@ -463,7 +498,7 @@ function App() {
         </section>
 
         {/* 9. ACQUISITION FUNNEL */}
-        <section className="section funnel-section">
+        <section className="section animate-in funnel-section">
           <div className="container">
             <div className="section-heading centered">
               <span className="eyebrow">Acquisition Funnel</span>
@@ -511,7 +546,7 @@ function App() {
         </section>
 
         {/* 10. PRICING STRATEGY */}
-        <section className="section pricing-section" id="pricing">
+        <section className="section animate-in pricing-section" id="pricing">
           <div className="container">
             <div className="section-heading centered">
               <span className="eyebrow">Pricing Strategy</span>
@@ -545,7 +580,7 @@ function App() {
         </section>
 
         {/* 11. PROMOTION STRATEGY */}
-        <section className="section promotion-section">
+        <section className="section animate-in promotion-section">
           <div className="container">
             <div className="section-heading">
               <span className="eyebrow">Promotion</span>
@@ -597,7 +632,7 @@ function App() {
         </section>
 
         {/* 12. PLACE / DISTRIBUTION */}
-        <section className="section place-section">
+        <section className="section animate-in place-section">
           <div className="container">
             <div className="section-heading">
               <span className="eyebrow">Place &amp; Distribution</span>
@@ -639,7 +674,7 @@ function App() {
         </section>
 
         {/* COMPETITIVE LANDSCAPE */}
-        <section className="section competitive-section" id="differentiation">
+        <section className="section animate-in competitive-section" id="differentiation">
           <div className="container">
             <div className="section-heading centered">
               <span className="eyebrow">How We Differentiate</span>
@@ -702,7 +737,7 @@ function App() {
         </section>
 
         {/* 17. FLEET / B2B */}
-        <section className="section b2b-section">
+        <section className="section animate-in b2b-section">
           <div className="container b2b-grid">
             <div>
               <span className="eyebrow">Fleet / B2B</span>
