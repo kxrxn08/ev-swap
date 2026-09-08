@@ -2278,6 +2278,46 @@ button, a { -webkit-tap-highlight-color: transparent; }
   padding: 105px 0 120px;
 }
 
+/* About voltGo */
+.about-section { background: var(--white); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.about-card {
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--off-white);
+}
+
+.about-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--green-light);
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.about-card h3 {
+  margin: 0;
+  color: var(--black);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 20px;
+}
+
+.about-card p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
 /* What is voltGo */
 .what-section { background: var(--off-white); }
 
@@ -2320,6 +2360,115 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 /* How it works */
 .how-section { background: var(--white); }
+
+/* Vertical swap flow */
+.swap-flow-vertical {
+  max-width: 500px;
+  margin: 0 auto 50px;
+  position: relative;
+  padding-left: 30px;
+}
+
+.swap-flow-vertical::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.swap-flow-v-item {
+  position: relative;
+  padding-bottom: 28px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.swap-flow-v-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.swap-flow-v-item:nth-child(1) { transition-delay: 0s; }
+.swap-flow-v-item:nth-child(2) { transition-delay: 0.15s; }
+.swap-flow-v-item:nth-child(3) { transition-delay: 0.3s; }
+.swap-flow-v-item:nth-child(4) { transition-delay: 0.45s; }
+.swap-flow-v-item:nth-child(5) { transition-delay: 0.6s; }
+
+.swap-flow-v-dot {
+  position: absolute;
+  left: -30px;
+  top: 18px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 3px solid var(--green);
+  z-index: 1;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.swap-flow-v-item.visible .swap-flow-v-dot {
+  background: var(--green);
+  box-shadow: 0 0 0 4px rgba(29, 159, 101, 0.2);
+}
+
+.swap-flow-v-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  margin-left: 14px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.swap-flow-v-item.visible .swap-flow-v-card {
+  border-color: var(--green);
+  box-shadow: 0 4px 15px rgba(29, 159, 101, 0.08);
+}
+
+.swap-flow-v-highlight .swap-flow-v-card {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.swap-flow-v-highlight .swap-flow-v-dot {
+  border-color: var(--green);
+  background: var(--green);
+  box-shadow: 0 0 0 4px rgba(29, 159, 101, 0.3);
+}
+
+.swap-flow-v-highlight .swap-flow-v-card strong,
+.swap-flow-v-highlight .swap-flow-v-card p {
+  color: white;
+}
+
+.swap-flow-v-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.swap-flow-v-card strong {
+  display: block;
+  margin: 0;
+  color: var(--black);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 15px;
+}
+
+.swap-flow-v-card p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
 
 .how-steps {
   max-width: 700px;
@@ -2399,6 +2548,117 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 [data-theme="dark"] .final-cta-desc { color: #c8d0cb; }
 
+/* ---------------- FAQ ---------------- */
+.faq-section { background: var(--off-white); }
+
+.faq-list {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  overflow: hidden;
+}
+
+.faq-item summary {
+  padding: 18px 24px;
+  cursor: pointer;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--black);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.2s ease;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+  content: "+";
+  font-size: 20px;
+  color: var(--green);
+  font-weight: 700;
+  transition: transform 0.2s ease;
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-item summary:hover { background: var(--off-white); }
+
+.faq-item p {
+  margin: 0;
+  padding: 0 24px 18px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ---------------- FLOATING BUTTONS ---------------- */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  color: white;
+  font-size: 26px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  z-index: 99;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-whatsapp:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 96px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--black);
+  color: white;
+  font-size: 20px;
+  display: grid;
+  place-items: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  transform: scale(1.1);
+}
+
+[data-theme="dark"] .back-to-top { background: #4dd99a; color: #101412; }
+
 /* ---------------- RESPONSIVE ---------------- */
 @media (max-width: 1000px) {
   .nav-links { display: none; }
@@ -2421,9 +2681,15 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .value-grid,
   .place-grid,
   .budget-grid,
-  .what-grid { grid-template-columns: repeat(2, 1fr); }
+  .what-grid,
+  .about-grid { grid-template-columns: repeat(2, 1fr); }
 
   .pricing-grid-3 { grid-template-columns: repeat(2, 1fr); }
+
+  .swap-flow-v-card { padding: 14px 16px; gap: 12px; }
+  .swap-flow-v-icon { font-size: 20px; }
+  .swap-flow-v-card strong { font-size: 14px; }
+  .swap-flow-v-card p { font-size: 12px; }
 
   .summary-grid { grid-template-columns: 1fr; }
 }
@@ -2465,7 +2731,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .value-grid,
   .place-grid,
   .budget-grid,
-  .what-grid { grid-template-columns: 1fr; }
+  .what-grid,
+  .about-grid { grid-template-columns: 1fr; }
 
   .pricing-signal-grid { grid-template-columns: 1fr; }
 

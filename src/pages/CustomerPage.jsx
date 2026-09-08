@@ -33,10 +33,23 @@ function CustomerPage() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
     );
-    document.querySelectorAll(".animate-in").forEach((el) => observer.observe(el));
+    document.querySelectorAll(".animate-in, .swap-flow-v-item").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const btn = document.querySelector(".back-to-top");
+    const onScroll = () => {
+      if (window.scrollY > 400) {
+        btn?.classList.add("visible");
+      } else {
+        btn?.classList.remove("visible");
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
@@ -133,16 +146,60 @@ function CustomerPage() {
           </div>
         </section>
 
+        {/* ABOUT voltGo */}
+        <section className="section animate-in about-section">
+          <div className="container">
+            <div className="section-heading centered">
+              <span className="eyebrow">About voltGo</span>
+              <h2>Built for drivers who keep moving</h2>
+              <p>
+                We are an early-stage EV battery-swapping startup. Our mission
+                is simple &mdash; give working electric vehicle drivers fast,
+                affordable access to charged batteries so they spend less time
+                waiting and more time earning.
+              </p>
+            </div>
+            <div className="about-grid">
+              <article className="about-card">
+                <div className="about-icon">&#128161;</div>
+                <h3>What we are building</h3>
+                <p>
+                  A network of battery-swap hubs where EV drivers can exchange
+                  a drained battery for a charged one in minutes. No long
+                  charging waits. No expensive downtime.
+                </p>
+              </article>
+              <article className="about-card">
+                <div className="about-icon">&#127758;</div>
+                <h3>Who it is for</h3>
+                <p>
+                  Commercial auto drivers, delivery riders, and small EV fleet
+                  operators &mdash; anyone who depends on their vehicle for
+                  daily income and cannot afford to sit idle.
+                </p>
+              </article>
+              <article className="about-card">
+                <div className="about-icon">&#128268;</div>
+                <h3>How we are different</h3>
+                <p>
+                  Unlike platforms that lock you into their vehicle and battery,
+                  voltGo works with compatible batteries you can swap at any hub.
+                  You keep your freedom of choice.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
         {/* WHAT IS voltGo */}
         <section className="section animate-in what-section">
           <div className="container">
             <div className="section-heading centered">
-              <span className="eyebrow">What is voltGo</span>
+              <span className="eyebrow">How It Works</span>
               <h2>Battery access without the wait</h2>
               <p>
-                We are building a battery-swapping network for electric
-                two-wheelers and three-wheelers. Swap a drained battery for a
-                charged one at a nearby hub and keep moving.
+                Swap a drained battery for a charged one at a nearby hub and
+                keep moving. Three simple steps.
               </p>
             </div>
             <div className="what-grid">
@@ -158,8 +215,9 @@ function CustomerPage() {
                 <div className="what-icon">&#128241;</div>
                 <h3>Track on the app</h3>
                 <p>
-                  See battery availability near you in real time. If you own
-                  your battery, check its charge level from the app.
+                  The voltGo app is in development. It will show battery
+                  availability near you and let you check your battery&apos;s
+                  charge level if you own one.
                 </p>
               </article>
               <article className="what-card">
@@ -184,57 +242,57 @@ function CustomerPage() {
                 From sign-up to your first swap, here is the full flow.
               </p>
             </div>
-            <div className="how-steps">
-              <div className="how-step">
-                <div className="how-step-number">1</div>
-                <div className="how-step-content">
-                  <h3>Open the app</h3>
-                  <p>
-                    See available batteries near you in real time. The app
-                    shows which hubs have charged batteries ready to swap.
-                  </p>
+
+            {/* Animated vertical flow */}
+            <div className="swap-flow-vertical">
+              <div className="swap-flow-v-item">
+                <div className="swap-flow-v-dot"></div>
+                <div className="swap-flow-v-card">
+                  <div className="swap-flow-v-icon">&#128241;</div>
+                  <div>
+                    <strong>Open the app</strong>
+                    <p>See available batteries near you in real time.</p>
+                  </div>
                 </div>
               </div>
-              <div className="how-step">
-                <div className="how-step-number">2</div>
-                <div className="how-step-content">
-                  <h3>Ride to the hub</h3>
-                  <p>
-                    Head to the nearest hub with your drained battery. No
-                    appointment needed &mdash; walk in anytime during operating
-                    hours.
-                  </p>
+              <div className="swap-flow-v-item">
+                <div className="swap-flow-v-dot"></div>
+                <div className="swap-flow-v-card">
+                  <div className="swap-flow-v-icon">&#128205;</div>
+                  <div>
+                    <strong>Find a hub</strong>
+                    <p>Pick the nearest hub with charged batteries ready.</p>
+                  </div>
                 </div>
               </div>
-              <div className="how-step">
-                <div className="how-step-number">3</div>
-                <div className="how-step-content">
-                  <h3>Swap your battery</h3>
-                  <p>
-                    Hand in your drained battery. Collect a fully charged,
-                    compatible replacement. The whole process takes just a few
-                    minutes.
-                  </p>
+              <div className="swap-flow-v-item">
+                <div className="swap-flow-v-dot"></div>
+                <div className="swap-flow-v-card">
+                  <div className="swap-flow-v-icon">&#128663;</div>
+                  <div>
+                    <strong>Ride to the hub</strong>
+                    <p>No appointment needed — walk in anytime.</p>
+                  </div>
                 </div>
               </div>
-              <div className="how-step">
-                <div className="how-step-number">4</div>
-                <div className="how-step-content">
-                  <h3>Track your battery</h3>
-                  <p>
-                    If you own your battery, open the app to check its charge
-                    level anytime. Know exactly when it is time for a swap.
-                  </p>
+              <div className="swap-flow-v-item swap-flow-v-highlight">
+                <div className="swap-flow-v-dot"></div>
+                <div className="swap-flow-v-card">
+                  <div className="swap-flow-v-icon">&#9889;</div>
+                  <div>
+                    <strong>Swap your battery</strong>
+                    <p>Hand in drained, collect charged. Just a few minutes.</p>
+                  </div>
                 </div>
               </div>
-              <div className="how-step">
-                <div className="how-step-number">5</div>
-                <div className="how-step-content">
-                  <h3>Keep riding</h3>
-                  <p>
-                    Get back on the road with a full battery. Repeat whenever
-                    you need &mdash; swap as often as your work demands.
-                  </p>
+              <div className="swap-flow-v-item">
+                <div className="swap-flow-v-dot"></div>
+                <div className="swap-flow-v-card">
+                  <div className="swap-flow-v-icon">&#128640;</div>
+                  <div>
+                    <strong>Keep riding</strong>
+                    <p>Back on the road with a full battery. Repeat as needed.</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -312,6 +370,68 @@ function CustomerPage() {
           </div>
         </section>
 
+        {/* FAQ */}
+        <section className="section animate-in faq-section" id="faq">
+          <div className="container">
+            <div className="section-heading centered">
+              <span className="eyebrow">FAQ</span>
+              <h2>Common questions</h2>
+            </div>
+            <div className="faq-list">
+              <details className="faq-item">
+                <summary>What vehicles are compatible with voltGo?</summary>
+                <p>
+                  We are working to support popular electric two-wheelers and
+                  three-wheelers. Compatibility depends on battery type. Check
+                  with us on WhatsApp to confirm if your vehicle is supported.
+                </p>
+              </details>
+              <details className="faq-item">
+                <summary>How does pay-per-swap work?</summary>
+                <p>
+                  You pay a flat fee each time you swap a battery. No monthly
+                  commitment. Ideal for occasional users or anyone trying the
+                  service for the first time.
+                </p>
+              </details>
+              <details className="faq-item">
+                <summary>Can I switch between plans?</summary>
+                <p>
+                  Yes. You can start with pay-per-swap and switch to a monthly
+                  rental plan whenever you are ready. Talk to us on WhatsApp to
+                  make the switch.
+                </p>
+              </details>
+              <details className="faq-item">
+                <summary>What if I own my battery?</summary>
+                <p>
+                  If you purchase your own battery through voltGo, it is
+                  exclusively yours — not shared with other riders. You can use
+                  the app to check its charge level and swap it at any hub when
+                  needed.
+                </p>
+              </details>
+              <details className="faq-item">
+                <summary>Where are the swap hubs located?</summary>
+                <p>
+                  We are placing hubs near auto stands, delivery hotspots, and
+                  commercial corridors. Open the app to see hubs near you. We
+                  are expanding to new areas based on driver demand.
+                </p>
+              </details>
+              <details className="faq-item">
+                <summary>Is there an app?</summary>
+                <p>
+                  The voltGo app is currently in development. Once launched, it
+                  will let you find nearby hubs, check battery availability in
+                  real time, and track your battery&apos;s charge level if you
+                  own one.
+                </p>
+              </details>
+            </div>
+          </div>
+        </section>
+
         {/* FINAL CTA */}
         <section className="final-cta" id="contact">
           <div className="container final-cta-inner">
@@ -339,6 +459,26 @@ function CustomerPage() {
           </div>
         </section>
       </main>
+
+      {/* Floating WhatsApp button */}
+      <a
+        href={WhatsAppLink}
+        className="floating-whatsapp"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Chat on WhatsApp"
+      >
+        &#128172;
+      </a>
+
+      {/* Back to top */}
+      <button
+        className="back-to-top"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        aria-label="Back to top"
+      >
+        &#8593;
+      </button>
 
       {/* FOOTER */}
       <footer className="footer">
