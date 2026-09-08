@@ -49,10 +49,6 @@ function App() {
                   Customer Insights
                 </a>
               </div>
-              <div className="hero-note">
-                <span>&#10003;</span>
-                Based on customer interviews &bull; Early-stage pilot
-              </div>
             </div>
             <div className="hero-visual">
               <div className="hero-card main-battery-card">
